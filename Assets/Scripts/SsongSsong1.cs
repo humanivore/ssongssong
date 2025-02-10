@@ -1,20 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SsongSsong : MonoBehaviour
+public class SsongSsong1 : MonoBehaviour
 {
     [SerializeField]
     private SsongSsongActions _ssongSsongActions;
     private bool _isMouseover;
-    private Animator _animator;
 
     void Awake()
     {
-        Debug.Log("awaken");
-        _animator = gameObject.GetComponent<Animator>(); 
         _ssongSsongActions = new SsongSsongActions();
         _ssongSsongActions.Default.Hold.performed += Hold_performed;
-        _ssongSsongActions.Default.Hold.canceled += Hold_canceled;
     }
 
     private void OnEnable()
@@ -30,30 +26,23 @@ public class SsongSsong : MonoBehaviour
     void OnMouseOver()
     {
         _isMouseover = true;
-        Debug.Log("mouseover");
     }
 
     void OnMouseExit()
     {
         _isMouseover = false;
-        Debug.Log("mouse exit");
     }
 
     private void Hold_performed(InputAction.CallbackContext context)
     {
+        Vector3 now = transform.position;
         if(_isMouseover)
         {
-            _animator.SetBool("Touch", true);
-        } else {
-            _animator.SetBool("Touch", false);
+            Vector3 target = transform.position;
+            target.y = now.y + 1;
+            transform.position = Vector3.MoveTowards(now, target, 1);
         }
     }
-
-    private void Hold_canceled(InputAction.CallbackContext context)
-    {
-        _animator.SetBool("Touch", false);
-    }
-
     // Start is called before the first frame update
     void Start()
     {

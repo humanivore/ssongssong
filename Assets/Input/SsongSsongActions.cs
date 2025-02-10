@@ -33,7 +33,7 @@ public partial class @SsongSsongActions: IInputActionCollection2, IDisposable
                     ""id"": ""77121db4-2bd3-45e1-8644-b15574b9a8d0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=1)"",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""initialStateCheck"": true
                 }
             ],
